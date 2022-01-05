@@ -14,6 +14,9 @@ class SetGameViewModel: ObservableObject {
     
     @Published private (set) var model = createSetGame()
     
+    var cardsInPlay: Array<SetGameModel.Card> { return model.cardsInPlay }
+    var remainingCards: Array<SetGameModel.Card> { return model.remainingCards }
+    
     // MARK - Intent(s)
     func getMessage() -> String {
         return model.getMessage()
