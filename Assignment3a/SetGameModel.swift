@@ -43,6 +43,13 @@ struct SetGameModel {
         remainingCards.removeSubrange(0...11)
     }
     
+    mutating func drawThree() {
+        if remainingCards.count >= 3 {
+            cardsInPlay.append(contentsOf: remainingCards[0...2])
+            remainingCards.removeSubrange(0...2)
+        }
+    }
+    
     struct Card: Identifiable {
         var color: Color // red, green purple
         var shape: String // TODO: what should this be? - diamond squiggle oval

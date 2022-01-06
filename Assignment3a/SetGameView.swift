@@ -16,6 +16,7 @@ struct SetGameView: View {
         AspectVGrid(items: game.cardsInPlay, aspectRatio: 2/3) { card in
             CardView(card: card).padding(4)
         }
+        Button("Draw 3", action: game.drawThree)
     }
 }
 
@@ -33,7 +34,25 @@ struct CardView: View {
             ZStack {
                 shape.fill().foregroundColor(card.color)
                 shape.strokeBorder(lineWidth: DrawingConstants.lineWidth, antialiased: false)
-                Text("\(card.id)").font(font(in: geometry.size))
+                VStack {
+                    Spacer()
+                    // FIXME: There must be a better way to do this
+                    // TODO: Make rectangles smaller
+                    // TODO: Figure out gradients
+                    if card.shape == "oval" {
+                        ForEach(0..<card.shapeCount) {_ in
+                            Circle().foregroundColor(Color.white).padding(DrawingConstants.circlePadding)
+                        }
+                    } else if card.shape == "diamond" {
+                        ForEach(0..<card.shapeCount) {_ in
+                            Diamond().foregroundColor(Color.white)
+                        }
+                    } else if card.shape == "squiggle" {
+                        ForEach(0..<card.shapeCount) {_ in
+                            Rectangle().scale(x:0.5, y:0.5).foregroundColor(Color.white)
+                        }
+                    }
+                }
             }
         }
     }
@@ -44,6 +63,7 @@ private struct DrawingConstants {
     static let cornerRadius:CGFloat = 10.0
     static let lineWidth:CGFloat = 3.0
     static let fontScale:CGFloat = 0.70
+    static let circlePadding:CGFloat = 1
 }
 
 struct ContentView_Previews: PreviewProvider {

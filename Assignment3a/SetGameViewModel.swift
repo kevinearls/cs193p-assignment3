@@ -21,4 +21,8 @@ class SetGameViewModel: ObservableObject {
     func getMessage() -> String {
         return model.getMessage()
     }
+    
+    func drawThree() {
+        model.drawThree()
+    }
 }
