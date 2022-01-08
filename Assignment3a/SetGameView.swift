@@ -14,7 +14,11 @@ struct SetGameView: View {
         Text("SET \(game.remainingCards.count) / \(game.cardsInPlay.count)")
             .padding()
         AspectVGrid(items: game.cardsInPlay, aspectRatio: 2/3) { card in
-            CardView(card: card).padding(4)
+            CardView(card: card)
+                .padding(4)
+                .onTapGesture {
+                    game.choose(card)
+                }
         }
         Button("Draw 3", action: game.drawThree)
     }
@@ -33,14 +37,20 @@ struct CardView: View {
         GeometryReader { geometry in
             ZStack {
                 shape.fill().foregroundColor(card.color)
-                shape.strokeBorder(lineWidth: DrawingConstants.lineWidth, antialiased: false)
+                if card.chosen {
+                    shape.strokeBorder(lineWidth: DrawingConstants.lineWidth * 5, antialiased: false)
+                } else {
+                    shape.strokeBorder(lineWidth: DrawingConstants.lineWidth, antialiased: false)
+                }
                 VStack {
                     Spacer()
                     // FIXME: There must be a better way to do this
                     // TODO: Make rectangles smaller
-                    // TODO: Figure out gradients
+                    // TODO: Figure out gradients/shading
+                    // Can shape become the Shape and can the card also contain the shading?
                     if card.shape == "oval" {
                         ForEach(0..<card.shapeCount) {_ in
+                            Circle().foregroundColor(Color.indigo).opacity(<#T##Double#>)
                             Circle().foregroundColor(Color.white).padding(DrawingConstants.circlePadding)
                         }
                     } else if card.shape == "diamond" {

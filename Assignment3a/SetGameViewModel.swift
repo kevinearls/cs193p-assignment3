@@ -18,11 +18,11 @@ class SetGameViewModel: ObservableObject {
     var remainingCards: Array<SetGameModel.Card> { return model.remainingCards }
     
     // MARK - Intent(s)
-    func getMessage() -> String {
-        return model.getMessage()
-    }
-    
     func drawThree() {
         model.drawThree()
+    }
+    
+    func choose(_ card: SetGameModel.Card) {
+        model.choose(card)
     }
 }

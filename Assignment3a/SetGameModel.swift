@@ -11,9 +11,22 @@ import Foundation
 struct SetGameModel {
     private (set) var cardsInPlay: Array<Card>
     private (set) var remainingCards: Array<Card>
+    private var threeChosen: Bool {
+        get { cardsInPlay.indices.filter({ cardsInPlay[$0].chosen}).threeMatches }
+    }
     
-    func getMessage() -> String {
-        return "This is from the model"
+    mutating func choose (_ card: Card) {
+        print("choose was called")
+        // FIXME review rules about when you an choose / unchoose a card -- can't choose something that is already chosen or in a set
+        if let chosenIndex = cardsInPlay.firstIndex(where: { $0.id == card.id }) {
+            cardsInPlay[chosenIndex].chosen = !card.chosen
+        }
+        
+        if threeChosen {
+            // TODO Here is where the rules need to be applied...
+            print( "There are three cards chosen")
+        }
+        
     }
     
     init() {
@@ -37,7 +50,7 @@ struct SetGameModel {
             }
         }
 
-        print("Got \(remainingCards.count) cards in original deck.")
+        //print("Got \(remainingCards.count) cards in original deck.")
         remainingCards.shuffle()
         cardsInPlay = Array(remainingCards[0...11])
         remainingCards.removeSubrange(0...11)
@@ -55,7 +68,19 @@ struct SetGameModel {
         var shape: String // TODO: what should this be? - diamond squiggle oval
         var shapeCount: Int // 1,2, 3
         var shading: String // This should probably be an enum of: solid, striped, open
+        var chosen: Bool = false
+        var inASet: Bool = false
         
         let id: Int
+    }
+}
+
+extension Array {
+    var threeMatches: Bool {
+        if self.count == 3 {
+            return true
+        } else {
+            return false
+        }
     }
 }

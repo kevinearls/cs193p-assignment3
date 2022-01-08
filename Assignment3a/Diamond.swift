@@ -11,7 +11,7 @@ import SwiftUI
 struct Diamond: Shape {
     func path(in rect: CGRect) -> Path {
         var p=Path()
-        print("minX \(rect.minX) maxX \(rect.maxX) minY \(rect.minY) maxY \(rect.maxY)" )
+        //print("minX \(rect.minX) maxX \(rect.maxX) minY \(rect.minY) maxY \(rect.maxY)" )
         
         let topCenter = CGPoint(x:rect.maxX / 2, y: 0)
         let bottomCenter = CGPoint(x:rect.maxX / 2, y: rect.maxY)
