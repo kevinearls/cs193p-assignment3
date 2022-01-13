@@ -33,7 +33,7 @@ struct CardView: View {
     
     var body: some View {
         let shape = RoundedRectangle(cornerRadius: DrawingConstants.cornerRadius)
-        
+        let blah:String = "\(card.shapeCount)"
         GeometryReader { geometry in
             ZStack {
                 shape.fill().foregroundColor(card.color)
@@ -45,12 +45,13 @@ struct CardView: View {
                 VStack {
                     Spacer()
                     // FIXME: There must be a better way to do this
+                    // FIXME: Sometimes this is not drawing the corret number of shapes!
                     // TODO: Make rectangles smaller
                     // TODO: Figure out gradients/shading
                     // Can shape become the Shape and can the card also contain the shading?
                     if card.shape == "oval" {
                         ForEach(0..<card.shapeCount) {_ in
-                            Circle().foregroundColor(Color.indigo).opacity(<#T##Double#>)
+                            //Circle().foregroundColor(Color.indigo)  // FIXME how to show shading?
                             Circle().foregroundColor(Color.white).padding(DrawingConstants.circlePadding)
                         }
                     } else if card.shape == "diamond" {
@@ -62,6 +63,8 @@ struct CardView: View {
                             Rectangle().scale(x:0.5, y:0.5).foregroundColor(Color.white)
                         }
                     }
+                    Text(blah)
+                    
                 }
             }
         }
