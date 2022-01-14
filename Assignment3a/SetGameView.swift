@@ -11,7 +11,7 @@ struct SetGameView: View {
     @ObservedObject var game: SetGameViewModel
     
     var body: some View {
-        Text("SET \(game.remainingCards.count) / \(game.cardsInPlay.count)")
+        Text("SET! \(game.remainingCards.count) cards remaining / \(game.cardsInPlay.count) in play")
             .padding()
         AspectVGrid(items: game.cardsInPlay, aspectRatio: 2/3) { card in
             CardView(card: card)
@@ -45,22 +45,20 @@ struct CardView: View {
                 VStack {
                     Spacer()
                     // FIXME: There must be a better way to do this
-                    // FIXME: Sometimes this is not drawing the corret number of shapes!
                     // TODO: Make rectangles smaller
                     // TODO: Figure out gradients/shading
-                    // Can shape become the Shape and can the card also contain the shading?
+                    // TODO: Figure out how to flatten/center if there is only one diamond
                     if card.shape == "oval" {
-                        ForEach(0..<card.shapeCount) {_ in
-                            //Circle().foregroundColor(Color.indigo)  // FIXME how to show shading?
+                        ForEach(0..<card.shapeCount, id: \.self) {_ in
                             Circle().foregroundColor(Color.white).padding(DrawingConstants.circlePadding)
                         }
                     } else if card.shape == "diamond" {
-                        ForEach(0..<card.shapeCount) {_ in
+                        ForEach(0..<card.shapeCount, id: \.self) {_ in
                             Diamond().foregroundColor(Color.white)
                         }
                     } else if card.shape == "squiggle" {
-                        ForEach(0..<card.shapeCount) {_ in
-                            Rectangle().scale(x:0.5, y:0.5).foregroundColor(Color.white)
+                        ForEach(0..<card.shapeCount, id: \.self) {_ in
+                            Rectangle().scale(x:DrawingConstants.rectangleScale, y:DrawingConstants.rectangleScale).foregroundColor(Color.white)
                         }
                     }
                     Text(blah)
@@ -71,12 +69,12 @@ struct CardView: View {
     }
 }
 
-
 private struct DrawingConstants {
     static let cornerRadius:CGFloat = 10.0
     static let lineWidth:CGFloat = 3.0
     static let fontScale:CGFloat = 0.70
     static let circlePadding:CGFloat = 1
+    static let rectangleScale:CGFloat = 0.5
 }
 
 struct ContentView_Previews: PreviewProvider {
