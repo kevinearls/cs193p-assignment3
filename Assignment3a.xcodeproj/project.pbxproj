@@ -22,6 +22,7 @@
 		9694588E2786008C001778DC /* SetGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameModel.swift; sourceTree = "<group>"; };
 		9694589027860741001778DC /* AspectVGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectVGrid.swift; sourceTree = "<group>"; };
 		969458AE27872999001778DC /* Diamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diamond.swift; sourceTree = "<group>"; };
+		96AC7D3F27A191C900628F88 /* Assignment_3.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Assignment_3.0.md; sourceTree = "<group>"; };
 		96F683A82785F82F0037C140 /* Assignment3a.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Assignment3a.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F683AB2785F82F0037C140 /* Assignment3aApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment3aApp.swift; sourceTree = "<group>"; };
 		96F683AD2785F82F0037C140 /* SetGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameView.swift; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		96F6839F2785F82F0037C140 = {
 			isa = PBXGroup;
 			children = (
+				96AC7D3F27A191C900628F88 /* Assignment_3.0.md */,
 				96F683AA2785F82F0037C140 /* Assignment3a */,
 				96F683A92785F82F0037C140 /* Products */,
 			);
